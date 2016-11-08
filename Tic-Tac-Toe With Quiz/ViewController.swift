@@ -62,7 +62,8 @@ class ViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        
+        // FIXIT: set random button image from quiz array
+        /*
         let maxBoardSizeFloat = min(view.bounds.width, view.bounds.height)
         let maxCellSizeFloat = maxBoardSizeFloat / CGFloat(3)
         let maxButtonSizeFloat = maxBoardSizeFloat * 0.1
@@ -76,12 +77,11 @@ class ViewController: UIViewController {
         for y in 0...2 {
             for x in 0...2 {
                 tagCount += 1
-                // FIXME: change cellRect, make small indents
+         
                 let cellButton = UIButton(type: .custom)
                 let cellRect = CGRect(x: CGFloat(x) * maxCellSizeFloat, y: CGFloat(y) * maxCellSizeFloat,
                                       width: maxCellSizeFloat, height: maxCellSizeFloat)
                 cellButton.frame = cellRect
-                // TODO: set random image from quiz array
                 cellButton.backgroundColor = UIColor.clear
                 cellButton.tag = tagCount
                 cellButton.addTarget(self, action: #selector(actionCellButton(_:)), for: .touchUpInside)
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         newGameButton.backgroundColor = UIColor.red
         newGameButton.addTarget(self, action: #selector(actionNewGameButton(_:)), for: .touchUpInside)
         view.addSubview(newGameButton)
-        
+        */
     }
 
     override func viewDidLoad() {
@@ -108,62 +108,63 @@ class ViewController: UIViewController {
     
     // MARK: - Action
     
-    @IBAction
-    
-    func actionCellButton(_ sender: UIButton)  {
+    @IBAction func actionCellButton(_ sender: UIButton)  {
         print("\(sender.tag)")
         
-        // check for cell is empty
-        if gameState[sender.tag - 1] == cell.free  && gameIsActive == true {
-            
-            // change cell state
-            gameState[sender.tag - 1] = activePlayer
-            
-            // design what drow in free cell
-            if activePlayer == player.cross {
-                sender.setImage(#imageLiteral(resourceName: "Cross"), for: .normal)
-                activePlayer = player.nought
-            } else {
-                sender.setImage(#imageLiteral(resourceName: "Nought"), for: .normal)
-                activePlayer = player.cross
-            }
-            
-        }
-        
-        // check for player is won
-        for combination in winningCombinations {
-            if gameState[combination[0]] != cell.free &&
-               gameState[combination[0]] == gameState[combination[1]] &&
-               gameState[combination[1]] == gameState[combination[2]] {
+        if gameIsActive == true {
+            // check for cell is empty
+            if gameState[sender.tag - 1] == cell.free  && gameIsActive == true {
                 
-                gameIsActive = false
+                // change cell state
+                gameState[sender.tag - 1] = activePlayer
                 
-                // check what is concret player won
-                if gameState[combination[0]] == player.cross {
-                    // TODO: show custom alert view
-                    print("cross has won")
+                // design what drow in free cell
+                if activePlayer == player.cross {
+                    sender.setImage(#imageLiteral(resourceName: "Cross"), for: .normal)
+                    activePlayer = player.nought
                 } else {
-                    print("nought has won")
+                    sender.setImage(#imageLiteral(resourceName: "Nought"), for: .normal)
+                    activePlayer = player.cross
                 }
                 
             }
-        }
-        
-        // check for nobody is won
-        gameIsActive = false
-        for i in gameState {
-            if i == cell.free {
-                gameIsActive = true
-                break
+            
+            // check for player is won
+            for combination in winningCombinations {
+                if gameState[combination[0]] != cell.free &&
+                    gameState[combination[0]] == gameState[combination[1]] &&
+                    gameState[combination[1]] == gameState[combination[2]] {
+                    
+                    gameIsActive = false
+                    
+                    // check what is concret player won
+                    if gameState[combination[0]] == player.cross {
+                        // TODO: show custom alert view
+                        print("cross has won")
+                    } else {
+                        print("nought has won")
+                    }
+                    
+                }
+            }
+            
+            // check for nobody is won
+            if gameIsActive == true {
+                gameIsActive = false
+                for i in gameState {
+                    if i == cell.free {
+                        gameIsActive = true
+                        break
+                    }
+                }
+                if gameIsActive == false {
+                    print("nobody has won")
+                }
             }
         }
-        if gameIsActive == false {
-            print("nobody has won")
-        }
-        
     }
     
-    func actionNewGameButton(_ sender: UIButton) {
+     @IBAction func actionNewGameButton(_ sender: UIButton) {
         
         startNewGame()
         print("new game")
