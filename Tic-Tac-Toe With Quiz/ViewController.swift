@@ -22,11 +22,11 @@ class ViewController: UIViewController {
     
     // MARK: - Constant
     
-    static let greenColor = UIColor(red: 76, green: 217, blue: 100, alpha: 1) //UIColor(red: 77, green: 194, blue: 0, alpha: 1)
-    static let yellowColor = UIColor(red: 255, green: 204, blue: 0, alpha: 1) //UIColor(red: 255, green: 249, blue: 38, alpha: 1)
-    static let redColor = UIColor(red: 255, green: 59, blue: 48, alpha: 1) //UIColor(red: 255, green: 40, blue: 19, alpha: 1)
-    static let blueColor = UIColor(red: 0, green: 122, blue: 255, alpha: 1) //UIColor(red: 59, green: 217, blue: 255, alpha: 1)
-    static let greyColor = UIColor(red: 163, green: 173, blue: 194, alpha: 1)
+    //    let staticGreenColor = UIColor(red: 77, green: 194, blue: 0, alpha: 1)
+    //    let staticYellowColor = UIColor(red: 255, green: 249, blue: 38, alpha: 1)
+    //    let staticRedColor = UIColor(red: 255, green: 40, blue: 19, alpha: 1)
+    //    let staticBlueColor = UIColor(red: 59, green: 217, blue: 255, alpha: 1)
+    //    let staticGreyColor = UIColor(red: 163, green: 173, blue: 194, alpha: 1)
     
     // MARK: - Properties
     
@@ -64,41 +64,41 @@ class ViewController: UIViewController {
         super.loadView()
         // FIXIT: set random button image from quiz array
         /*
-        let maxBoardSizeFloat = min(view.bounds.width, view.bounds.height)
-        let maxCellSizeFloat = maxBoardSizeFloat / CGFloat(3)
-        let maxButtonSizeFloat = maxBoardSizeFloat * 0.1
-        
-        let boardRect = CGRect(x: 0, y: 0, width: maxBoardSizeFloat, height: maxBoardSizeFloat)
-        let boardView = UIView(frame: boardRect)
-        boardView.backgroundColor = UIColor.clear
-        view.addSubview(boardView)
-        
-        var tagCount = 0
-        for y in 0...2 {
-            for x in 0...2 {
-                tagCount += 1
+         let maxBoardSizeFloat = min(view.bounds.width, view.bounds.height)
+         let maxCellSizeFloat = maxBoardSizeFloat / CGFloat(3)
+         let maxButtonSizeFloat = maxBoardSizeFloat * 0.1
          
-                let cellButton = UIButton(type: .custom)
-                let cellRect = CGRect(x: CGFloat(x) * maxCellSizeFloat, y: CGFloat(y) * maxCellSizeFloat,
-                                      width: maxCellSizeFloat, height: maxCellSizeFloat)
-                cellButton.frame = cellRect
-                cellButton.backgroundColor = UIColor.clear
-                cellButton.tag = tagCount
-                cellButton.addTarget(self, action: #selector(actionCellButton(_:)), for: .touchUpInside)
-                boardView.addSubview(cellButton)
-            }
-        }
-        
-        let newGameButton = UIButton(type: .custom)
-        let newGameRect = CGRect(x: view.bounds.width - maxButtonSizeFloat, y: 0,
-                                 width: maxButtonSizeFloat, height: maxButtonSizeFloat)
-        newGameButton.frame = newGameRect
-        newGameButton.backgroundColor = UIColor.red
-        newGameButton.addTarget(self, action: #selector(actionNewGameButton(_:)), for: .touchUpInside)
-        view.addSubview(newGameButton)
-        */
+         let boardRect = CGRect(x: 0, y: 0, width: maxBoardSizeFloat, height: maxBoardSizeFloat)
+         let boardView = UIView(frame: boardRect)
+         boardView.backgroundColor = UIColor.clear
+         view.addSubview(boardView)
+         
+         var tagCount = 0
+         for y in 0...2 {
+         for x in 0...2 {
+         tagCount += 1
+         
+         let cellButton = UIButton(type: .custom)
+         let cellRect = CGRect(x: CGFloat(x) * maxCellSizeFloat, y: CGFloat(y) * maxCellSizeFloat,
+         width: maxCellSizeFloat, height: maxCellSizeFloat)
+         cellButton.frame = cellRect
+         cellButton.backgroundColor = UIColor.clear
+         cellButton.tag = tagCount
+         cellButton.addTarget(self, action: #selector(actionCellButton(_:)), for: .touchUpInside)
+         boardView.addSubview(cellButton)
+         }
+         }
+         
+         let newGameButton = UIButton(type: .custom)
+         let newGameRect = CGRect(x: view.bounds.width - maxButtonSizeFloat, y: 0,
+         width: maxButtonSizeFloat, height: maxButtonSizeFloat)
+         newGameButton.frame = newGameRect
+         newGameButton.backgroundColor = UIColor.red
+         newGameButton.addTarget(self, action: #selector(actionNewGameButton(_:)), for: .touchUpInside)
+         view.addSubview(newGameButton)
+         */
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -141,8 +141,10 @@ class ViewController: UIViewController {
                     if gameState[combination[0]] == player.cross {
                         // TODO: show custom alert view
                         print("cross has won")
+                        gameIsActive = false
                     } else {
                         print("nought has won")
+                        gameIsActive = false
                     }
                     
                 }
@@ -159,12 +161,13 @@ class ViewController: UIViewController {
                 }
                 if gameIsActive == false {
                     print("nobody has won")
+                    gameIsActive = false
                 }
             }
         }
     }
     
-     @IBAction func actionNewGameButton(_ sender: UIButton) {
+    @IBAction func actionNewGameButton(_ sender: UIButton) {
         
         startNewGame()
         print("new game")
@@ -185,6 +188,7 @@ class ViewController: UIViewController {
             let button = view.viewWithTag(i) as! UIButton
             // TODO: add random quiz from quiz array
             button.setImage(nil, for: .normal)
+            button.backgroundColor = UIColor.white
         }
         
     }
