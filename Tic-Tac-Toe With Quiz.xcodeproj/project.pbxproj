@@ -13,6 +13,8 @@
 		EB72D7781DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB72D7761DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld */; };
 		EB72D77A1DCFC70900067211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB72D7791DCFC70900067211 /* Assets.xcassets */; };
 		EB72D77D1DCFC70900067211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB72D77B1DCFC70900067211 /* LaunchScreen.storyboard */; };
+		EBA2FB751DD4ED7E00CEE500 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */; };
+		EBA2FB771DD4F1BF00CEE500 /* quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = EBA2FB761DD4F1BF00CEE500 /* quiz.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		EB72D7791DCFC70900067211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB72D77C1DCFC70900067211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB72D77E1DCFC70900067211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		EBA2FB761DD4F1BF00CEE500 /* quiz.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quiz.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,9 @@
 			isa = PBXGroup;
 			children = (
 				EB72D76F1DCFC70900067211 /* AppDelegate.swift */,
+				EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */,
 				EB72D7711DCFC70900067211 /* ViewController.swift */,
+				EBA2FB761DD4F1BF00CEE500 /* quiz.json */,
 				EB72D7731DCFC70900067211 /* Main.storyboard */,
 				EB72D7791DCFC70900067211 /* Assets.xcassets */,
 				EB72D77B1DCFC70900067211 /* LaunchScreen.storyboard */,
@@ -128,6 +134,7 @@
 			files = (
 				EB72D77D1DCFC70900067211 /* LaunchScreen.storyboard in Resources */,
 				EB72D77A1DCFC70900067211 /* Assets.xcassets in Resources */,
+				EBA2FB771DD4F1BF00CEE500 /* quiz.json in Resources */,
 				EB72D7751DCFC70900067211 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +148,7 @@
 			files = (
 				EB72D7781DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld in Sources */,
 				EB72D7721DCFC70900067211 /* ViewController.swift in Sources */,
+				EBA2FB751DD4ED7E00CEE500 /* Quiz.swift in Sources */,
 				EB72D7701DCFC70900067211 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

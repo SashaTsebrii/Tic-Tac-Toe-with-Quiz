@@ -47,9 +47,7 @@ class ViewController: UIViewController {
                                [0, 3, 6], [1, 4, 7], [2, 5, 8],
                                [0, 4, 8], [2, 4, 6]]
     // TODO: create quiz array from core data
-    
-    // TODO: create textView for ? bunnto and add description
-    
+        
     // MARK: - Setting
     
     override var prefersStatusBarHidden: Bool {
@@ -73,41 +71,6 @@ class ViewController: UIViewController {
     override func loadView() {
         super.loadView()
         // FIXIT: set random button image from quiz array
-        
-        /*
-        let maxBoardSizeFloat = min(view.bounds.width, view.bounds.height)
-        let maxCellSizeFloat = maxBoardSizeFloat / CGFloat(3)
-        let maxButtonSizeFloat = maxBoardSizeFloat * 0.1
-        
-        let boardRect = CGRect(x: 0, y: 0, width: maxBoardSizeFloat, height: maxBoardSizeFloat)
-        let boardView = UIView(frame: boardRect)
-        boardView.backgroundColor = UIColor.clear
-        view.addSubview(boardView)
-        
-        var tagCount = 0
-        for y in 0...2 {
-            for x in 0...2 {
-                tagCount += 1
-                
-                let cellButton = UIButton(type: .custom)
-                let cellRect = CGRect(x: CGFloat(x) * maxCellSizeFloat, y: CGFloat(y) * maxCellSizeFloat,
-                                      width: maxCellSizeFloat, height: maxCellSizeFloat)
-                cellButton.frame = cellRect
-                cellButton.backgroundColor = UIColor.clear
-                cellButton.tag = tagCount
-                cellButton.addTarget(self, action: #selector(actionCellButton(_:)), for: .touchUpInside)
-                boardView.addSubview(cellButton)
-            }
-        }
-        
-        let newGameButton = UIButton(type: .custom)
-        let newGameRect = CGRect(x: view.bounds.width - maxButtonSizeFloat, y: 0,
-                                 width: maxButtonSizeFloat, height: maxButtonSizeFloat)
-        newGameButton.frame = newGameRect
-        newGameButton.backgroundColor = UIColor.red
-        newGameButton.addTarget(self, action: #selector(actionNewGameButton(_:)), for: .touchUpInside)
-        view.addSubview(newGameButton)
-        */
         
         let indentHorizontal = view.bounds.width * 0.05
         let indentVertical = view.bounds.height * 0.05
@@ -159,6 +122,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         startNewGame()
+        
+        Quiz.init(withJSON: "quiz")
         
     }
     
@@ -258,7 +223,7 @@ class ViewController: UIViewController {
             "RULES FOR TIC-TAC-TOE\n" +
             "\n" +
             "1. The game is played on a grid that's 3 squares by 3 squares.\n" +
-            "2. You are X, your friend (or the computer in this case) is O. Players take turns putting their marks in empty squares.\n" +
+            "2. You are X, your friend is O. Players take turns putting their marks in empty squares.\n" +
             "3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.\n" +
             "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.\n" +
             "\n" +
