@@ -23,18 +23,6 @@ struct Cell {
     let occupied = 1
 }
 
-struct Question {
-    let first = 0
-    let second = 1
-    let third = 2
-    let fourth = 3
-    let fifth = 4
-    let sixth = 5
-    let seventh = 6
-    let eighth = 7
-    let ninth = 8
-}
-
 class ViewController: UIViewController {
     
     // MARK: - Constant
@@ -60,8 +48,12 @@ class ViewController: UIViewController {
                                [0, 3, 6], [1, 4, 7], [2, 5, 8],
                                [0, 4, 8], [2, 4, 6]]
     var questions: [Quiz] = []
-    let question = Question()
+    var currentCell = 0
         
+    @IBOutlet weak var activeCrossView: UIView!
+    @IBOutlet weak var activeNoughtView: UIView!
+    
+    
     // MARK: - Setting
     
     override var prefersStatusBarHidden: Bool {
@@ -141,21 +133,18 @@ class ViewController: UIViewController {
         questionView.alpha = 0
         view.addSubview(questionView)
         
-        let closeButton = UIButton(type: .custom)
-        let closeRect = CGRect(x: alertView.bounds.maxX - alertView.bounds.width * 0.05, y: alertView.bounds.minY,
-                               width: alertView.bounds.width * 0.05, height: alertView.bounds.height * 0.1)
-        closeButton.frame = closeRect
-        closeButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
-        closeButton.backgroundColor = yellowColor
-        closeButton.alpha = 1
-        closeButton.tag = 22
-        closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
-        alertView.addSubview(questionView)
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        activeCrossView.layer.borderWidth = 2
+//        activeCrossView.layer.borderColor = greenColor.cgColor
+//        activeCrossView.layer.masksToBounds = false;
+//        activeCrossView.layer.shadowOffset = CGSize(width: 0, height: 0);
+//        activeCrossView.layer.shadowColor = greenColor.cgColor
+//        activeCrossView.layer.shadowRadius = 10;
+//        activeCrossView.layer.shadowOpacity = 1;
         
         startNewGame()
         
@@ -168,8 +157,13 @@ class ViewController: UIViewController {
         switch sender.tag {
         case choose.cross:
             activePlayer = player.cross
+            activeCrossView.backgroundColor = redColor
+            activeNoughtView.backgroundColor = greyColor
+            
         case choose.nought:
             activePlayer = player.nought
+            activeNoughtView.backgroundColor = blueColor
+            activeCrossView.backgroundColor = greyColor
             
         default:
             activePlayer = player.cross
@@ -180,63 +174,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func actionCellButton(_ sender: UIButton) {
-//        print("\(sender.tag)")
+        print("\(sender.tag)")
         
-        if gameIsActive == true {
-            // check for cell is empty
-            if gameState[sender.tag - 1] == cell.free  && gameIsActive == true {
-                
-                // change cell state
-                gameState[sender.tag - 1] = activePlayer
-                
-                // design what drow in free cell
-                if activePlayer == player.cross {
-                    sender.setImage(#imageLiteral(resourceName: "Cross"), for: .normal)
-                    sender.backgroundColor = redColor
-                    activePlayer = player.nought
-                } else {
-                    sender.setImage(#imageLiteral(resourceName: "Nought"), for: .normal)
-                    sender.backgroundColor = blueColor
-                    activePlayer = player.cross
-                }
-                
-            }
-            
-            // check for player is won
-            for combination in winningCombinations {
-                if gameState[combination[0]] != cell.free &&
-                    gameState[combination[0]] == gameState[combination[1]] &&
-                    gameState[combination[1]] == gameState[combination[2]] {
-                    
-                    gameIsActive = false
-                    
-                    // check what is concret player won
-                    if gameState[combination[0]] == player.cross {
-                        showAlertViewWithText(inputText: "Cross has won!")
-                        gameIsActive = false
-                    } else {
-                        showAlertViewWithText(inputText: "Nought has won!")
-                        gameIsActive = false
-                    }
-                    
-                }
-            }
-            
-            // check for nobody is won
-            if gameIsActive == true {
-                gameIsActive = false
-                for i in gameState {
-                    if i == cell.free {
-                        gameIsActive = true
-                        break
-                    }
-                }
-                if gameIsActive == false {
-                    showAlertViewWithText(inputText: "Nobody has won!")
-                    gameIsActive = false
-                }
-            }
-        }
+        currentCell = sender.tag
+        showQuestionViewWithQuestion(question: questions[sender.tag - 1])
+        
     }
     
     @IBAction func actionNewGameButton(_ sender: UIButton) {
@@ -299,6 +241,97 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func anctionAnswerButton(_ newSender: UIButton) {
+        
+        let sender = view.viewWithTag(currentCell) as! UIButton
+        let question = questions[sender.tag - 1]
+        print("FACT question \(question.question)")
+        
+        if newSender.titleLabel!.text == question.rightAnswer {
+            if gameIsActive == true {
+                // check for cell is empty
+                if gameState[sender.tag - 1] == cell.free  && gameIsActive == true {
+                    
+                    // change cell state
+                    gameState[sender.tag - 1] = activePlayer
+                    
+                    // design what drow in free cell
+                    if activePlayer == player.cross {
+                        sender.setImage(#imageLiteral(resourceName: "Cross"), for: .normal)
+                        sender.backgroundColor = redColor
+                        activeCrossView.backgroundColor = greyColor
+                        activeNoughtView.backgroundColor = blueColor
+                        activePlayer = player.nought
+                    } else {
+                        sender.setImage(#imageLiteral(resourceName: "Nought"), for: .normal)
+                        sender.backgroundColor = blueColor
+                        activeCrossView.backgroundColor = redColor
+                        activeNoughtView.backgroundColor = greyColor
+                        activePlayer = player.cross
+                    }
+                    
+                }
+                
+                // check for player is won
+                for combination in winningCombinations {
+                    if gameState[combination[0]] != cell.free &&
+                        gameState[combination[0]] == gameState[combination[1]] &&
+                        gameState[combination[1]] == gameState[combination[2]] {
+                        
+                        gameIsActive = false
+                        
+                        // check what is concret player won
+                        if gameState[combination[0]] == player.cross {
+                            hideQuestionView()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.showAlertViewWithText(inputText: "Cross has won!")
+                            }
+                            gameIsActive = false
+                        } else {
+                            hideQuestionView()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.showAlertViewWithText(inputText: "Nought has won!")
+                            }
+                            gameIsActive = false
+                        }
+                        
+                    }
+                }
+                
+                // check for nobody is won
+                if gameIsActive == true {
+                    gameIsActive = false
+                    for i in gameState {
+                        if i == cell.free {
+                            gameIsActive = true
+                            hideQuestionView()
+                            break
+                        }
+                    }
+                    if gameIsActive == false {
+                        hideQuestionView()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.showAlertViewWithText(inputText: "Nobody has won!")
+                        }
+                        gameIsActive = false
+                    }
+                }
+            }
+        } else {
+            hideQuestionView()
+            if activePlayer == player.cross {
+                activePlayer = player.nought
+                activeCrossView.backgroundColor = greyColor
+                activeNoughtView.backgroundColor = blueColor
+            } else if activePlayer == player.nought {
+                activePlayer = player.cross
+                activeCrossView.backgroundColor = redColor
+                activeNoughtView.backgroundColor = greyColor
+            }
+        }
+        
+    }
+    
     // MARK: - Help
     
     func startNewGame() {
@@ -307,6 +340,8 @@ class ViewController: UIViewController {
         
         gameIsActive = true
         activePlayer = player.cross
+        activeCrossView.backgroundColor = redColor
+        activeNoughtView.backgroundColor = greyColor
         gameState = [cell.free, cell.free, cell.free,
                      cell.free, cell.free, cell.free,
                      cell.free, cell.free, cell.free]
@@ -355,17 +390,58 @@ class ViewController: UIViewController {
     
     func showQuestionViewWithQuestion(question: Quiz) {
         
-        let questionFrame = CGSize(width: alertView.bounds.width, height: alertView.bounds.height * 0.2)
-        let questionRect = CGRect(x: alertView.bounds.minX, y: alertView.bounds.minY,
-                              width: questionFrame.width, height: questionFrame.height)
-        let textLabel = UILabel(frame: questionRect)
-        textLabel.textAlignment = .center
-        let font = UIFont.boldSystemFont(ofSize: questionRect.height * 0.8)
-        let attributed = NSAttributedString(string: "\(question.question)", attributes: [NSFontAttributeName: font])
-        textLabel.attributedText = attributed
-        questionView.addSubview(textLabel)
+        print("REAL question \(question.question)")
         
-        let imageView =
+        let closeButton = UIButton(type: .custom)
+        let closeRect = CGRect(x: alertView.bounds.maxX - alertView.bounds.width * 0.05, y: alertView.bounds.minY,
+                               width: alertView.bounds.width * 0.05, height: alertView.bounds.height * 0.1)
+        closeButton.frame = closeRect
+        closeButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
+        closeButton.backgroundColor = yellowColor
+        closeButton.alpha = 1
+        closeButton.tag = 22
+        closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
+        questionView.addSubview(closeButton)
+
+        
+        let questionFrame = CGSize(width: questionView.bounds.width, height: questionView.bounds.height * 0.3)
+        let questionRect = CGRect(x: questionView.bounds.minX, y: questionView.bounds.minY,
+                              width: questionFrame.width, height: questionFrame.height)
+        let questionLabel = UILabel(frame: questionRect)
+        let font = UIFont.boldSystemFont(ofSize: questionRect.height * 0.3)
+        let attributed = NSAttributedString(string: "\(question.question)", attributes: [NSFontAttributeName: font])
+        questionLabel.numberOfLines = 0
+        questionLabel.attributedText = attributed
+        questionLabel.lineBreakMode = .byWordWrapping
+        questionLabel.textAlignment = .center
+        questionLabel.adjustsFontSizeToFitWidth = true
+        questionView.addSubview(questionLabel)
+        
+        let imageRect = CGRect(x: questionView.bounds.minX, y: questionLabel.frame.maxY,
+                               width: questionView.bounds.width, height: questionView.bounds.height * 0.5)
+        let imageView = UIImageView(frame: imageRect)
+        imageView.backgroundColor = UIColor.clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: question.imageName)
+        questionView.addSubview(imageView)
+        
+        let buttonWidth = questionView.bounds.width / 3
+        let answers = question.variantAnswers.components(separatedBy: "-")
+        for i in 0...2 {
+            let answerButton = UIButton(type: .custom)
+            answerButton.frame = CGRect(x: buttonWidth * CGFloat(i), y: imageView.frame.maxY,
+                                        width: buttonWidth, height: questionView.bounds.height * 0.2)
+            let font = UIFont.boldSystemFont(ofSize: questionRect.height * 0.3)
+//            let shadow = NSShadow()
+//            shadow.shadowOffset = CGSize(width: questionRect.height * 0.01, height: questionRect.height * 0.01)
+//            shadow.shadowColor = UIColor.black
+//            shadow.shadowBlurRadius = questionRect.height * 0.01
+            let attributed = NSAttributedString(string: "\(answers[i])", attributes: [NSFontAttributeName: font,/* NSShadowAttributeName: shadow*/])
+            answerButton.setAttributedTitle(attributed, for: .normal)
+            answerButton.setTitleColor(UIColor.black, for: .normal)
+            answerButton.addTarget(self, action: #selector(anctionAnswerButton(_:)), for: .touchUpInside)
+            questionView.addSubview(answerButton)
+        }
         
         self.questionView.isHidden = false
         UIView.animate(withDuration: 1, animations: {
@@ -407,8 +483,8 @@ class ViewController: UIViewController {
             self.questions.remove(at: index)
         }
         
-//        print(self.questions)
-//        print(nums)
+        print(self.questions)
+        print(nums)
     }
     
 }
