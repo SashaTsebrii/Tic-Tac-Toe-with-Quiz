@@ -23,6 +23,18 @@ struct Cell {
     let occupied = 1
 }
 
+struct Question {
+    let first = 0
+    let second = 1
+    let third = 2
+    let fourth = 3
+    let fifth = 4
+    let sixth = 5
+    let seventh = 6
+    let eighth = 7
+    let ninth = 8
+}
+
 class ViewController: UIViewController {
     
     // MARK: - Constant
@@ -36,6 +48,7 @@ class ViewController: UIViewController {
     // MARK: - Properties
     
     let alertView = UIView()
+    let questionView = UIView()
     let choose = Choose()
     
     var gameIsActive = false
@@ -46,7 +59,8 @@ class ViewController: UIViewController {
     let winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
                                [0, 3, 6], [1, 4, 7], [2, 5, 8],
                                [0, 4, 8], [2, 4, 6]]
-    // TODO: create quiz array from core data
+    var questions: [Quiz] = []
+    let question = Question()
         
     // MARK: - Setting
     
@@ -70,8 +84,8 @@ class ViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        // FIXIT: set random button image from quiz array
         
+        // create alert view
         let indentHorizontal = view.bounds.width * 0.05
         let indentVertical = view.bounds.height * 0.05
         let alertRect = CGRect(x: indentHorizontal, y: indentVertical,
@@ -116,14 +130,34 @@ class ViewController: UIViewController {
         noughtButton.addTarget(self, action: #selector(actionCrossButtonOrNoughtButton(_:)), for: .touchUpInside)
         alertView.addSubview(noughtButton)
         
+        
+        // create question view
+        questionView.frame = alertRect
+        questionView.backgroundColor = UIColor.white
+        questionView.layer.shadowOpacity = 1
+        questionView.layer.shadowOffset = CGSize.zero
+        questionView.layer.shadowRadius = min(view.bounds.width, view.bounds.height) * 0.03
+        questionView.isHidden = true
+        questionView.alpha = 0
+        view.addSubview(questionView)
+        
+        let closeButton = UIButton(type: .custom)
+        let closeRect = CGRect(x: alertView.bounds.maxX - alertView.bounds.width * 0.05, y: alertView.bounds.minY,
+                               width: alertView.bounds.width * 0.05, height: alertView.bounds.height * 0.1)
+        closeButton.frame = closeRect
+        closeButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
+        closeButton.backgroundColor = yellowColor
+        closeButton.alpha = 1
+        closeButton.tag = 22
+        closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
+        alertView.addSubview(questionView)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         startNewGame()
-        
-        Quiz.init(withJSON: "quiz")
         
     }
     
@@ -146,7 +180,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func actionCellButton(_ sender: UIButton) {
-        print("\(sender.tag)")
+//        print("\(sender.tag)")
         
         if gameIsActive == true {
             // check for cell is empty
@@ -208,7 +242,7 @@ class ViewController: UIViewController {
     @IBAction func actionNewGameButton(_ sender: UIButton) {
         
         startNewGame()
-        print("new game")
+        showAlertViewWithText(inputText: "New game.")
         
     }
     
@@ -258,12 +292,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func actionCloseButton(_ sender: UIButton) {
-        hideAlertView()
+        if sender.tag == 22 {
+            hideQuestionView()
+        } else {
+            hideAlertView()
+        }
     }
     
     // MARK: - Help
     
     func startNewGame() {
+        
+        generateRandomQuestions()
         
         gameIsActive = true
         activePlayer = player.cross
@@ -273,7 +313,7 @@ class ViewController: UIViewController {
         
         for i in 1...9 {
             let button = view.viewWithTag(i) as! UIButton
-            // TODO: add random quiz from quiz array
+            // FIXME: set random button image from quiz array
             button.setImage(nil, for: .normal)
             button.backgroundColor = UIColor.white
         }
@@ -313,7 +353,63 @@ class ViewController: UIViewController {
         })
     }
     
-    // TODO: get object for quiz array from core data
+    func showQuestionViewWithQuestion(question: Quiz) {
+        
+        let questionFrame = CGSize(width: alertView.bounds.width, height: alertView.bounds.height * 0.2)
+        let questionRect = CGRect(x: alertView.bounds.minX, y: alertView.bounds.minY,
+                              width: questionFrame.width, height: questionFrame.height)
+        let textLabel = UILabel(frame: questionRect)
+        textLabel.textAlignment = .center
+        let font = UIFont.boldSystemFont(ofSize: questionRect.height * 0.8)
+        let attributed = NSAttributedString(string: "\(question.question)", attributes: [NSFontAttributeName: font])
+        textLabel.attributedText = attributed
+        questionView.addSubview(textLabel)
+        
+        let imageView =
+        
+        self.questionView.isHidden = false
+        UIView.animate(withDuration: 1, animations: {
+            self.questionView.alpha = 1
+        }, completion: nil)
+    }
+
+    
+    func hideQuestionView() {
+        UIView.animate(withDuration: 1, animations: {
+            self.questionView.alpha = 0
+        }, completion: { (finished: Bool) in
+            for subview in self.questionView.subviews {
+                subview.removeFromSuperview()
+            }
+            self.questionView.isHidden = true
+        })
+    }
+    
+    func generateRandomQuestions() {
+        self.questions.removeAll()
+        
+        // fill questions array
+        let quiz = Manager.SharedManager.getJSON(fileName: "quiz")
+        for question in quiz {
+            let question = Quiz(question: question[1], variantAnswers: question[2], rightAnswer: question[3], imageName: question[4])
+            self.questions.append(question!)
+        }
+        
+        // create an array of 0 through 59
+        var nums = Array(0...59)
+        // remove the blacklist number
+        nums.remove(at: nums.index(of: 8)!)
+        var randoms = [Int]()
+        for _ in 1...50 {
+            let index = Int(arc4random_uniform(UInt32(nums.count)))
+            randoms.append(nums[index])
+            nums.remove(at: index)
+            self.questions.remove(at: index)
+        }
+        
+//        print(self.questions)
+//        print(nums)
+    }
     
 }
 

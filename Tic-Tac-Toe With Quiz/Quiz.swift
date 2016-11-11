@@ -15,34 +15,12 @@ class Quiz: NSObject {
     let rightAnswer: String
     let imageName: String
     
-    init?(withJSON fileName: String) {
-        
-        if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
-            do {
-                let jsonData = try NSData(contentsOfFile: path, options: NSData.ReadingOptions.mappedIfSafe)
-                do {
-                    let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-                    if let objects : [NSDictionary] = jsonResult["objects"] as? [NSDictionary] {
-                        
-                        for object: NSDictionary in objects {
-                            for (name,value) in object {
-                                print("\(name) , \(value)")
-                            }
-                        }
-                    }
-                } catch {}
-            } catch {}
-        }
-        
-        question = ""
-        variantAnswers = ""
-        rightAnswer = ""
-        imageName = ""
+    init?(question: String, variantAnswers: String, rightAnswer: String, imageName: String) {
+        self.question = question
+        self.variantAnswers = variantAnswers
+        self.rightAnswer = rightAnswer
+        self.imageName = imageName
     }
-    
-    func getQuizArray() -> [Quiz] {
-        var quizArray: [Quiz] = []
-        return quizArray
-    }
+
     
 }
