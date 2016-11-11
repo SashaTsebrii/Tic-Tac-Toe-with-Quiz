@@ -334,9 +334,80 @@ class ViewController: UIViewController {
     
     // MARK: - Help
     
+    func createImagesArrayFromQuestions(questions: [Quiz]) -> [UIImage] {
+        
+        var imagesArray: [UIImage] = []
+        
+        for question in questions {
+            
+            let indentHorizontal = self.view.bounds.width * 0.05
+            let indentVertical = self.view.bounds.height * 0.05
+            let alertRect = CGRect(x: indentHorizontal, y: indentVertical,
+                                   width: self.view.bounds.width - indentHorizontal * 2, height: self.view.bounds.height - indentVertical * 2)
+            let questionView = UIView()
+            questionView.frame = alertRect
+            questionView.backgroundColor = UIColor.white
+            questionView.layer.shadowOpacity = 1
+            questionView.layer.shadowOffset = CGSize.zero
+            questionView.layer.shadowRadius = min(self.view.bounds.width, self.view.bounds.height) * 0.03
+            questionView.isHidden = false
+            questionView.alpha = 1
+            view.addSubview(questionView)
+            view.bringSubview(toFront: questionView)
+            
+            let questionFrame = CGSize(width: questionView.bounds.width, height: questionView.bounds.height * 0.3)
+            let questionRect = CGRect(x: questionView.bounds.minX, y: questionView.bounds.minY,
+                                      width: questionFrame.width, height: questionFrame.height)
+            let questionLabel = UILabel(frame: questionRect)
+            let font = UIFont.boldSystemFont(ofSize: questionRect.height * 0.3)
+            let attributed = NSAttributedString(string: "\(question.question)", attributes: [NSFontAttributeName: font])
+            questionLabel.numberOfLines = 0
+            questionLabel.attributedText = attributed
+            questionLabel.lineBreakMode = .byWordWrapping
+            questionLabel.textAlignment = .center
+            questionLabel.adjustsFontSizeToFitWidth = true
+            questionView.addSubview(questionLabel)
+            
+            let imageRect = CGRect(x: questionView.bounds.minX, y: questionLabel.frame.maxY,
+                                   width: questionView.bounds.width, height: questionView.bounds.height * 0.5)
+            let imageView = UIImageView(frame: imageRect)
+            imageView.backgroundColor = UIColor.clear
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = UIImage(named: question.imageName)
+            questionView.addSubview(imageView)
+            
+            let buttonWidth = questionView.bounds.width / 3
+            let answers = question.variantAnswers.components(separatedBy: "-")
+            for i in 0...2 {
+                let answerButton = UIButton(type: .custom)
+                answerButton.frame = CGRect(x: buttonWidth * CGFloat(i), y: imageView.frame.maxY,
+                                            width: buttonWidth, height: questionView.bounds.height * 0.2)
+                let font = UIFont.boldSystemFont(ofSize: questionRect.height * 0.3)
+                let attributed = NSAttributedString(string: "\(answers[i])", attributes: [NSFontAttributeName: font])
+                answerButton.setAttributedTitle(attributed, for: .normal)
+                answerButton.setTitleColor(UIColor.black, for: .normal)
+                questionView.addSubview(answerButton)
+            }
+            
+            let image = UIImage.imageWithView(view: questionView)
+            imagesArray.append(image)
+            
+            for view in questionView.subviews {
+                view.removeFromSuperview()
+            }
+            questionView.removeFromSuperview()
+            
+        }
+        
+        return imagesArray
+    }
+    
     func startNewGame() {
         
         generateRandomQuestions()
+        
+        let imagesArray = createImagesArrayFromQuestions(questions: questions)
+        print(imagesArray)
         
         gameIsActive = true
         activePlayer = player.cross
@@ -348,8 +419,7 @@ class ViewController: UIViewController {
         
         for i in 1...9 {
             let button = view.viewWithTag(i) as! UIButton
-            // FIXME: set random button image from quiz array
-            button.setImage(nil, for: .normal)
+            button.setImage(imagesArray[i - 1], for: .normal)
             button.backgroundColor = UIColor.white
         }
         
@@ -489,3 +559,12 @@ class ViewController: UIViewController {
     
 }
 
+extension UIImage {
+    class func imageWithView(view: UIView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
+}
