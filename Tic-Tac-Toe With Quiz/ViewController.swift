@@ -138,14 +138,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        activeCrossView.layer.borderWidth = 2
-//        activeCrossView.layer.borderColor = greenColor.cgColor
-//        activeCrossView.layer.masksToBounds = false;
-//        activeCrossView.layer.shadowOffset = CGSize(width: 0, height: 0);
-//        activeCrossView.layer.shadowColor = greenColor.cgColor
-//        activeCrossView.layer.shadowRadius = 10;
-//        activeCrossView.layer.shadowOpacity = 1;
-        
         startNewGame()
         
     }
@@ -502,11 +494,7 @@ class ViewController: UIViewController {
             answerButton.frame = CGRect(x: buttonWidth * CGFloat(i), y: imageView.frame.maxY,
                                         width: buttonWidth, height: questionView.bounds.height * 0.2)
             let font = UIFont.boldSystemFont(ofSize: questionRect.height * 0.3)
-//            let shadow = NSShadow()
-//            shadow.shadowOffset = CGSize(width: questionRect.height * 0.01, height: questionRect.height * 0.01)
-//            shadow.shadowColor = UIColor.black
-//            shadow.shadowBlurRadius = questionRect.height * 0.01
-            let attributed = NSAttributedString(string: "\(answers[i])", attributes: [NSFontAttributeName: font,/* NSShadowAttributeName: shadow*/])
+            let attributed = NSAttributedString(string: "\(answers[i])", attributes: [NSFontAttributeName: font])
             answerButton.setAttributedTitle(attributed, for: .normal)
             answerButton.setTitleColor(UIColor.black, for: .normal)
             answerButton.addTarget(self, action: #selector(anctionAnswerButton(_:)), for: .touchUpInside)
@@ -558,6 +546,8 @@ class ViewController: UIViewController {
     }
     
 }
+
+// MARK: - Extension
 
 extension UIImage {
     class func imageWithView(view: UIView) -> UIImage {

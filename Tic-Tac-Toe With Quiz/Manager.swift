@@ -22,9 +22,9 @@ class Manager: NSObject {
                     let jsonResult: NSDictionary = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
                     if let objects: [NSDictionary] = jsonResult["objects"] as? [NSDictionary] {
                         for object: NSDictionary in objects {
-//                            for (name,value) in object {
-//                                print("\(name) , \(value)")
-//                            }
+                            for (name,value) in object {
+                                print("\(name) , \(value)")
+                            }
                             if let rows: [NSArray] = object["rows"] as? [NSArray] {
                                 return rows as! [Array]
                             }
