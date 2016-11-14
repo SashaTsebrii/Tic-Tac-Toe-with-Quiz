@@ -21,6 +21,5 @@ class Quiz: NSObject {
         self.rightAnswer = rightAnswer
         self.imageName = imageName
     }
-
     
 }

@@ -35,8 +35,8 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     
-    let alertView = UIView()
-    let questionView = UIView()
+    let alertView = AlertView()
+    let questionView = QuestionView()
     let choose = Choose()
     
     var gameIsActive = false
@@ -545,16 +545,4 @@ class ViewController: UIViewController {
         print(nums)
     }
     
-}
-
-// MARK: - Extension
-
-extension UIImage {
-    class func imageWithView(view: UIView) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img!
-    }
 }

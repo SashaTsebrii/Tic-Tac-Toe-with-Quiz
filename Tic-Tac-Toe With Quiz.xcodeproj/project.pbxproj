@@ -7,18 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB02D11A1DDA7BD1002B3B70 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02D1191DDA7BD1002B3B70 /* AlertView.swift */; };
+		EB02D11C1DDA830B002B3B70 /* UIImage+ImageFromView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02D11B1DDA830B002B3B70 /* UIImage+ImageFromView.swift */; };
 		EB72D7701DCFC70900067211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72D76F1DCFC70900067211 /* AppDelegate.swift */; };
 		EB72D7721DCFC70900067211 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72D7711DCFC70900067211 /* ViewController.swift */; };
 		EB72D7751DCFC70900067211 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB72D7731DCFC70900067211 /* Main.storyboard */; };
 		EB72D7781DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB72D7761DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld */; };
 		EB72D77A1DCFC70900067211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB72D7791DCFC70900067211 /* Assets.xcassets */; };
 		EB72D77D1DCFC70900067211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB72D77B1DCFC70900067211 /* LaunchScreen.storyboard */; };
+		EB9889CB1DD8FBFC0090F2A6 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9889CA1DD8FBFC0090F2A6 /* QuestionView.swift */; };
 		EBA2FB751DD4ED7E00CEE500 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */; };
 		EBA2FB771DD4F1BF00CEE500 /* quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = EBA2FB761DD4F1BF00CEE500 /* quiz.json */; };
 		EBA2FB7B1DD53D6E00CEE500 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2FB7A1DD53D6E00CEE500 /* Manager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB02D1191DDA7BD1002B3B70 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		EB02D11B1DDA830B002B3B70 /* UIImage+ImageFromView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageFromView.swift"; sourceTree = "<group>"; };
 		EB72D76C1DCFC70900067211 /* Tic-Tac-Toe With Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic-Tac-Toe With Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB72D76F1DCFC70900067211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB72D7711DCFC70900067211 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,6 +32,7 @@
 		EB72D7791DCFC70900067211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB72D77C1DCFC70900067211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB72D77E1DCFC70900067211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB9889CA1DD8FBFC0090F2A6 /* QuestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		EBA2FB761DD4F1BF00CEE500 /* quiz.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quiz.json; sourceTree = "<group>"; };
 		EBA2FB7A1DD53D6E00CEE500 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -65,7 +71,10 @@
 				EB72D76F1DCFC70900067211 /* AppDelegate.swift */,
 				EBA2FB7A1DD53D6E00CEE500 /* Manager.swift */,
 				EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */,
+				EB02D1191DDA7BD1002B3B70 /* AlertView.swift */,
+				EB9889CA1DD8FBFC0090F2A6 /* QuestionView.swift */,
 				EB72D7711DCFC70900067211 /* ViewController.swift */,
+				EB02D11B1DDA830B002B3B70 /* UIImage+ImageFromView.swift */,
 				EBA2FB761DD4F1BF00CEE500 /* quiz.json */,
 				EB72D7731DCFC70900067211 /* Main.storyboard */,
 				EB72D7791DCFC70900067211 /* Assets.xcassets */,
@@ -149,11 +158,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB02D11C1DDA830B002B3B70 /* UIImage+ImageFromView.swift in Sources */,
 				EB72D7781DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld in Sources */,
 				EB72D7721DCFC70900067211 /* ViewController.swift in Sources */,
+				EB02D11A1DDA7BD1002B3B70 /* AlertView.swift in Sources */,
 				EBA2FB751DD4ED7E00CEE500 /* Quiz.swift in Sources */,
 				EB72D7701DCFC70900067211 /* AppDelegate.swift in Sources */,
 				EBA2FB7B1DD53D6E00CEE500 /* Manager.swift in Sources */,
+				EB9889CB1DD8FBFC0090F2A6 /* QuestionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
