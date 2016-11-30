@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 struct Player {
     let cross = 1
@@ -49,6 +50,7 @@ class ViewController: UIViewController {
                                [0, 4, 8], [2, 4, 6]]
     var questions: [Quiz] = []
     var currentCell = 0
+    var audioPlayer: AVAudioPlayer?
         
     @IBOutlet weak var activeCrossView: UIView!
     @IBOutlet weak var activeNoughtView: UIView!
@@ -240,6 +242,10 @@ class ViewController: UIViewController {
         print("FACT question \(question.question)")
         
         if newSender.titleLabel!.text == question.rightAnswer {
+            playCorrectSound()
+            let randomAnswer = ["Good job!", "Fantastic!", "Awesome!", "Excellent!"]
+            let randomIndex = Int(arc4random_uniform(UInt32(randomAnswer.count)))
+            showAlertViewWithText(inputText: randomAnswer[randomIndex])
             if gameIsActive == true {
                 // check for cell is empty
                 if gameState[sender.tag - 1] == cell.free  && gameIsActive == true {
@@ -310,6 +316,8 @@ class ViewController: UIViewController {
                 }
             }
         } else {
+            playWrongSound()
+            showAlertViewWithText(inputText: "You almost got it, try again.")
             hideQuestionView()
             if activePlayer == player.cross {
                 activePlayer = player.nought
@@ -543,6 +551,42 @@ class ViewController: UIViewController {
         
         print(self.questions)
         print(nums)
+    }
+    
+    // MARK: - Sound
+    
+    func playCorrectSound() {
+        guard let url = Bundle.main.url(forResource: "Correct", withExtension: "wav") else {
+            print("sound url not found")
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            guard let player = audioPlayer else { return }
+            
+            player.prepareToPlay()
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func playWrongSound() {
+        guard let url = Bundle.main.url(forResource: "Wrong", withExtension: "wav") else {
+            print("sound url not found")
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            guard let player = audioPlayer else { return }
+            
+            player.prepareToPlay()
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
 }

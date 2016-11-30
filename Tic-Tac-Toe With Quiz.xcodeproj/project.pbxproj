@@ -19,6 +19,8 @@
 		EBA2FB751DD4ED7E00CEE500 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */; };
 		EBA2FB771DD4F1BF00CEE500 /* quiz.json in Resources */ = {isa = PBXBuildFile; fileRef = EBA2FB761DD4F1BF00CEE500 /* quiz.json */; };
 		EBA2FB7B1DD53D6E00CEE500 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA2FB7A1DD53D6E00CEE500 /* Manager.swift */; };
+		EBDFB4291DEE667F009678C6 /* Correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBDFB4271DEE667F009678C6 /* Correct.wav */; };
+		EBDFB42A1DEE667F009678C6 /* Wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBDFB4281DEE667F009678C6 /* Wrong.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		EBA2FB761DD4F1BF00CEE500 /* quiz.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quiz.json; sourceTree = "<group>"; };
 		EBA2FB7A1DD53D6E00CEE500 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		EBDFB4271DEE667F009678C6 /* Correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Correct.wav; sourceTree = "<group>"; };
+		EBDFB4281DEE667F009678C6 /* Wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Wrong.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,14 +79,24 @@
 				EB9889CA1DD8FBFC0090F2A6 /* QuestionView.swift */,
 				EB72D7711DCFC70900067211 /* ViewController.swift */,
 				EB02D11B1DDA830B002B3B70 /* UIImage+ImageFromView.swift */,
-				EBA2FB761DD4F1BF00CEE500 /* quiz.json */,
 				EB72D7731DCFC70900067211 /* Main.storyboard */,
-				EB72D7791DCFC70900067211 /* Assets.xcassets */,
 				EB72D77B1DCFC70900067211 /* LaunchScreen.storyboard */,
+				EB72D7791DCFC70900067211 /* Assets.xcassets */,
+				EBDFB4261DEE667F009678C6 /* Sound */,
+				EBA2FB761DD4F1BF00CEE500 /* quiz.json */,
 				EB72D77E1DCFC70900067211 /* Info.plist */,
 				EB72D7761DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld */,
 			);
 			path = "Tic-Tac-Toe With Quiz";
+			sourceTree = "<group>";
+		};
+		EBDFB4261DEE667F009678C6 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				EBDFB4271DEE667F009678C6 /* Correct.wav */,
+				EBDFB4281DEE667F009678C6 /* Wrong.wav */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +161,9 @@
 			files = (
 				EB72D77D1DCFC70900067211 /* LaunchScreen.storyboard in Resources */,
 				EB72D77A1DCFC70900067211 /* Assets.xcassets in Resources */,
+				EBDFB42A1DEE667F009678C6 /* Wrong.wav in Resources */,
 				EBA2FB771DD4F1BF00CEE500 /* quiz.json in Resources */,
+				EBDFB4291DEE667F009678C6 /* Correct.wav in Resources */,
 				EB72D7751DCFC70900067211 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
