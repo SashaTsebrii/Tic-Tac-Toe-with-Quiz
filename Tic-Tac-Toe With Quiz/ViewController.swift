@@ -24,14 +24,17 @@ struct Cell {
     let occupied = 1
 }
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Constant
     
+    let purpleColor = UIColor(red: 0.471, green: 0.000, blue: 0.800, alpha: 1.00)
+    let pinkColor = UIColor(red:0.988, green:0.000, blue:1.000, alpha:1.00)
+    
     let redColor = UIColor(red:1.00, green:0.16, blue:0.07, alpha:1.0)
     let blueColor = UIColor(red:0.23, green:0.85, blue:1.00, alpha:1.0)
-    let greenColor = UIColor(red:0.30, green:0.76, blue:0.00, alpha:1.0)
-    let yellowColor = UIColor(red:1.00, green:0.98, blue:0.15, alpha:1.0)
+    let greenColor = UIColor(red: 0.471, green: 0.000, blue: 0.800, alpha: 1.00) //UIColor(red:0.30, green:0.76, blue:0.00, alpha:1.0)
+    let yellowColor = UIColor(red:0.988, green:0.000, blue:1.000, alpha:1.00) //UIColor(red:1.00, green:0.98, blue:0.15, alpha:1.0)
     let greyColor = UIColor(red:0.64, green:0.68, blue:0.76, alpha:1.0)
     
     // MARK: - Properties
@@ -39,6 +42,10 @@ class ViewController: UIViewController {
     let alertView = AlertView()
     let questionView = QuestionView()
     let choose = Choose()
+    let firstPlayerNameField = UITextField()
+    let secondPlayerNameField = UITextField()
+    let crossButton = UIButton(type: .custom)
+    let noughtButton = UIButton(type: .custom)
     
     var gameIsActive = false
     var activePlayer = 0
@@ -51,10 +58,17 @@ class ViewController: UIViewController {
     var questions: [Quiz] = []
     var currentCell = 0
     var audioPlayer: AVAudioPlayer?
+    
+    var firstPlayerName = ""
+    var secondPlayerName = ""
+    
+    var isWin = false
         
     @IBOutlet weak var activeCrossView: UIView!
     @IBOutlet weak var activeNoughtView: UIView!
     
+    @IBOutlet weak var firstPlayerLabel: UILabel!
+    @IBOutlet weak var secondPlayerLabel: UILabel!
     
     // MARK: - Setting
     
@@ -79,6 +93,8 @@ class ViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
+        self.view.backgroundColor = yellowColor
+        
         // create alert view
         let indentHorizontal = view.bounds.width * 0.05
         let indentVertical = view.bounds.height * 0.05
@@ -92,38 +108,57 @@ class ViewController: UIViewController {
         alertView.layer.shadowRadius = min(view.bounds.width, view.bounds.height) * 0.03
         view.addSubview(alertView)
         
-        let textFrame = CGSize(width: alertView.bounds.width, height: alertView.bounds.height * 0.1)
-        let textRect = CGRect(x: alertView.bounds.minX, y: alertView.bounds.midY - textFrame.height * 2.5,
+        let textFrame = CGSize(width: alertView.bounds.width, height: alertView.bounds.height * 0.2)
+        let textRect = CGRect(x: alertView.bounds.minX, y: alertView.bounds.midY + alertView.bounds.size.height * 0.05 - textFrame.height * 2.5,
                               width: textFrame.width, height: textFrame.height)
         let textLabel = UILabel(frame: textRect)
         textLabel.textAlignment = .center
-        let font = UIFont.boldSystemFont(ofSize: textFrame.height * 0.8)
-        let attributed = NSAttributedString(string: "Choose your team", attributes: [NSFontAttributeName: font])
+        textLabel.numberOfLines = 0
+        textLabel.lineBreakMode = .byWordWrapping
+        let font = UIFont.boldSystemFont(ofSize: textFrame.height * 0.4)
+        let attributed = NSAttributedString(string: "Enter the names for both teams.\n Then select the team.", attributes: [NSFontAttributeName: font])
         textLabel.attributedText = attributed
         alertView.addSubview(textLabel)
         
         let crossOrNoughtSizeFloat = min(alertView.bounds.width, alertView.bounds.height) * 0.3
         
-        let crossButton = UIButton(type: .custom)
         let crossRect = CGRect(x: alertView.bounds.midX - crossOrNoughtSizeFloat * 2, y: alertView.bounds.midY,
                                width: crossOrNoughtSizeFloat, height: crossOrNoughtSizeFloat)
         crossButton.frame = crossRect
         crossButton.backgroundColor = redColor
         crossButton.setImage(#imageLiteral(resourceName: "Cross"), for: .normal)
+        crossButton.isEnabled = false
         crossButton.tag = choose.cross
         crossButton.addTarget(self, action: #selector(actionCrossButtonOrNoughtButton(_:)), for: .touchUpInside)
         alertView.addSubview(crossButton)
         
-        let noughtButton = UIButton(type: .custom)
         let noughtRect = CGRect(x: alertView.bounds.midX + crossOrNoughtSizeFloat, y: alertView.bounds.midY,
                                width: crossOrNoughtSizeFloat, height: crossOrNoughtSizeFloat)
         noughtButton.frame = noughtRect
         noughtButton.backgroundColor = blueColor
         noughtButton.setImage(#imageLiteral(resourceName: "Nought"), for: .normal)
+        noughtButton.isEnabled = false
         noughtButton.tag = choose.nought
         noughtButton.addTarget(self, action: #selector(actionCrossButtonOrNoughtButton(_:)), for: .touchUpInside)
         alertView.addSubview(noughtButton)
         
+        firstPlayerNameField.frame = CGRect(x: crossButton.frame.origin.x - crossButton.frame.size.width * 0.5,
+                                            y: crossButton.frame.origin.y - crossButton.frame.size.height / 2,
+                                            width: crossButton.frame.size.width * 2, height: crossButton.frame.size.height / 3)
+        firstPlayerNameField.borderStyle = .line
+        firstPlayerNameField.placeholder = "first player name"
+        firstPlayerNameField.delegate = self
+        firstPlayerNameField.tag = 50
+        alertView.addSubview(firstPlayerNameField)
+        
+        secondPlayerNameField.frame = CGRect(x: noughtButton.frame.origin.x - noughtButton.frame.size.width * 0.5,
+                                             y: noughtButton.frame.origin.y - noughtButton.frame.size.height / 2,
+                                             width: noughtButton.frame.size.width * 2, height: noughtButton.frame.size.height / 3)
+        secondPlayerNameField.borderStyle = .line
+        secondPlayerNameField.placeholder = "second player name"
+        secondPlayerNameField.delegate = self
+        secondPlayerNameField.tag = 51
+        alertView.addSubview(secondPlayerNameField)
         
         // create question view
         questionView.frame = alertRect
@@ -163,16 +198,18 @@ class ViewController: UIViewController {
             activePlayer = player.cross
         }
         
+        firstPlayerLabel.text = firstPlayerNameField.text!
+        secondPlayerLabel.text = secondPlayerNameField.text!
         hideAlertView()
         
     }
     
     @IBAction func actionCellButton(_ sender: UIButton) {
         print("\(sender.tag)")
-        
-        currentCell = sender.tag
-        showQuestionViewWithQuestion(question: questions[sender.tag - 1])
-        
+        if gameIsActive {
+            currentCell = sender.tag
+            showQuestionViewWithQuestion(question: questions[sender.tag - 1])
+        }
     }
     
     @IBAction func actionNewGameButton(_ sender: UIButton) {
@@ -231,7 +268,15 @@ class ViewController: UIViewController {
         if sender.tag == 22 {
             hideQuestionView()
         } else {
-            hideAlertView()
+            if isWin {
+                isWin = false
+                hideAlertView()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.startNewGame()
+                }
+            } else {
+                hideAlertView()
+            }
         }
     }
     
@@ -281,14 +326,16 @@ class ViewController: UIViewController {
                         // check what is concret player won
                         if gameState[combination[0]] == player.cross {
                             hideQuestionView()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                self.showAlertViewWithText(inputText: "Cross has won!")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                self.isWin = true
+                                self.showAlertViewWithText(inputText: "\(self.firstPlayerLabel.text!) has won!")
                             }
                             gameIsActive = false
                         } else {
                             hideQuestionView()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                self.showAlertViewWithText(inputText: "Nought has won!")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                self.isWin = true
+                                self.showAlertViewWithText(inputText: "\(self.secondPlayerLabel.text!) has won!")
                             }
                             gameIsActive = false
                         }
@@ -423,8 +470,9 @@ class ViewController: UIViewController {
             button.backgroundColor = UIColor.white
         }
         
-    }
         
+    }
+    
     func showAlertViewWithText(inputText: String) {
         
         let textFrame = CGSize(width: alertView.bounds.width, height: alertView.bounds.height * 0.1)
@@ -437,12 +485,24 @@ class ViewController: UIViewController {
         textLabel.attributedText = attributed
         alertView.addSubview(textLabel)
         
+        let closeButton = UIButton(type: .custom)
+        let closeRect = CGRect(x: alertView.bounds.maxX - alertView.bounds.width * 0.05, y: alertView.bounds.minY,
+                               width: alertView.bounds.width * 0.05, height: alertView.bounds.height * 0.1)
+        closeButton.frame = closeRect
+        closeButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
+        closeButton.backgroundColor = yellowColor
+        closeButton.alpha = 1
+        closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
+        alertView.addSubview(closeButton)
+        
         self.alertView.isHidden = false
         UIView.animate(withDuration: 1, animations: {
             self.alertView.alpha = 1
         }, completion: { (finished: Bool) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.hideAlertView()
+            if !self.isWin {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.hideAlertView()
+                }
             }
         })
     }
@@ -587,6 +647,35 @@ class ViewController: UIViewController {
         } catch let error {
             print(error.localizedDescription)
         }
+    }
+    
+    //MARK: - UITextFieldDelegate
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == 50 {
+            // cross
+            firstPlayerName = textField.text!
+            if firstPlayerNameField.text != "" && secondPlayerNameField.text != "" {
+                crossButton.isEnabled = true
+                noughtButton.isEnabled = true
+            }
+        } else if textField.tag == 51 {
+            // nought
+            secondPlayerName = textField.text!
+            if firstPlayerNameField.text != "" && secondPlayerNameField.text != "" {
+                crossButton.isEnabled = true
+                noughtButton.isEnabled = true
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if firstPlayerNameField.text != "" && secondPlayerNameField.text != "" {
+            crossButton.isEnabled = true
+            noughtButton.isEnabled = true
+        }
+        return true
     }
     
 }

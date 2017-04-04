@@ -10,7 +10,7 @@ import UIKit
 
 class QuestionView: UIView {
     /*
-    MARK: Property
+    MARK: - Property
     
     let text: String
     
