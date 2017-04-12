@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB02D11A1DDA7BD1002B3B70 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02D1191DDA7BD1002B3B70 /* AlertView.swift */; };
 		EB02D11C1DDA830B002B3B70 /* UIImage+ImageFromView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02D11B1DDA830B002B3B70 /* UIImage+ImageFromView.swift */; };
+		EB62AE001E93F0A800ADB6C5 /* EnterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62ADFF1E93F0A800ADB6C5 /* EnterNameView.swift */; };
 		EB72D7701DCFC70900067211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72D76F1DCFC70900067211 /* AppDelegate.swift */; };
 		EB72D7721DCFC70900067211 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72D7711DCFC70900067211 /* ViewController.swift */; };
 		EB72D7751DCFC70900067211 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB72D7731DCFC70900067211 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		EB02D1191DDA7BD1002B3B70 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		EB02D11B1DDA830B002B3B70 /* UIImage+ImageFromView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ImageFromView.swift"; sourceTree = "<group>"; };
+		EB62ADFF1E93F0A800ADB6C5 /* EnterNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameView.swift; sourceTree = "<group>"; };
 		EB72D76C1DCFC70900067211 /* Tic-Tac-Toe With Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic-Tac-Toe With Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB72D76F1DCFC70900067211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB72D7711DCFC70900067211 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				EB72D76F1DCFC70900067211 /* AppDelegate.swift */,
 				EBA2FB7A1DD53D6E00CEE500 /* Manager.swift */,
 				EBA2FB741DD4ED7E00CEE500 /* Quiz.swift */,
+				EB62ADFF1E93F0A800ADB6C5 /* EnterNameView.swift */,
 				EB02D1191DDA7BD1002B3B70 /* AlertView.swift */,
 				EB9889CA1DD8FBFC0090F2A6 /* QuestionView.swift */,
 				EB72D7711DCFC70900067211 /* ViewController.swift */,
@@ -176,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB02D11C1DDA830B002B3B70 /* UIImage+ImageFromView.swift in Sources */,
+				EB62AE001E93F0A800ADB6C5 /* EnterNameView.swift in Sources */,
 				EB72D7781DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld in Sources */,
 				EB72D7721DCFC70900067211 /* ViewController.swift in Sources */,
 				EB02D11A1DDA7BD1002B3B70 /* AlertView.swift in Sources */,
