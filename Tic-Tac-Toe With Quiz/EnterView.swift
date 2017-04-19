@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EnterNameView: UIView {
+class EnterView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.

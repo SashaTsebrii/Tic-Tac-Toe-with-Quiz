@@ -30,8 +30,12 @@ class Manager: NSObject {
                             }
                         }
                     }
-                } catch {}
-            } catch {}
+                } catch {
+                    print("No 'jsonData'")
+                }
+            } catch {
+                print("No 'path'")
+            }
         }
         return []
     }

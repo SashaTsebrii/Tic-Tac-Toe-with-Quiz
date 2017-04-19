@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F43c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F43c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GbA-Sj-oLQ">
     <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="fY2-BQ-gek">
             <objects>
-                <viewController id="GbA-Sj-oLQ" sceneMemberID="viewController">
+                <viewController id="GbA-Sj-oLQ" customClass="StartViewController" customModule="Tic_Tac_Toe_With_Quiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cjV-H5-8mS"/>
                         <viewControllerLayoutGuide type="bottom" id="RTs-Td-0HK"/>
@@ -33,29 +33,31 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" title="New Game"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="G3Y-fh-gCd"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="2qx-en-U54"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XM-Zj-mFs">
                                 <rect key="frame" x="430" y="203" width="226" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <state key="normal" title="History"/>
+                                <state key="normal" title="Score"/>
                                 <connections>
-                                    <segue destination="swu-4h-22b" kind="presentation" id="WWt-ol-YBz"/>
+                                    <segue destination="FKi-dv-Wcb" kind="presentation" id="33W-rq-trB"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="vcU-H7-ja1"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88g-rL-7lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-468.75000000000006" y="363.768115942029"/>
+            <point key="canvasLocation" x="-770" y="374"/>
         </scene>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tic_Tac_Toe_With_Quiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameViewController" customModule="Tic_Tac_Toe_With_Quiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -202,37 +204,28 @@
                     <connections>
                         <outlet property="activeCrossView" destination="nEk-TP-sH7" id="y2z-WS-Ge7"/>
                         <outlet property="activeNoughtView" destination="akx-74-5KM" id="pZi-49-WvY"/>
+                        <outlet property="alertVeiwCloseButton" destination="HYT-JB-2pn" id="Y57-rz-QPd"/>
+                        <outlet property="alertView" destination="oWb-Cx-OXH" id="GIO-To-nnB"/>
+                        <outlet property="alertViewTextLabel" destination="Dxl-49-fbF" id="Z9O-XM-4xB"/>
+                        <outlet property="enterView" destination="dGQ-0O-UCx" id="4WB-Fc-2fn"/>
+                        <outlet property="enterViewCrossButton" destination="hGA-9b-lXb" id="oo6-Rn-PIf"/>
+                        <outlet property="enterViewFirstPlayerField" destination="vjC-Tw-KQc" id="6Ps-U8-saq"/>
+                        <outlet property="enterViewNoughtButton" destination="obK-sv-JIU" id="SKU-kg-d2J"/>
+                        <outlet property="enterViewOrLabel" destination="fJB-AW-cfh" id="jlz-hh-xuF"/>
+                        <outlet property="enterViewSecondPlayerField" destination="QEf-6q-iov" id="ceR-vL-Oka"/>
+                        <outlet property="enterViewTextLabel" destination="9Ah-Hy-UAy" id="pWG-3E-jXa"/>
                         <outlet property="firstPlayerLabel" destination="Nsb-28-E2l" id="wdx-mo-30p"/>
+                        <outlet property="questionView" destination="gS3-gd-U5t" id="6YB-hH-gYJ"/>
+                        <outlet property="questionViewImageView" destination="7v1-xO-5hF" id="Jas-OH-ttK"/>
+                        <outlet property="questionViewTextLabel" destination="vKZ-dK-P7m" id="DBY-S1-jjY"/>
                         <outlet property="secondPlayerLabel" destination="RqO-tm-PiV" id="ync-97-UO0"/>
+                        <outletCollection property="questionViewAnswerButtons" destination="KDi-E7-64J" collectionClass="NSMutableArray" id="4lZ-Ta-xPO"/>
+                        <outletCollection property="questionViewAnswerButtons" destination="nr7-U3-gnr" collectionClass="NSMutableArray" id="QR1-Ez-j0m"/>
+                        <outletCollection property="questionViewAnswerButtons" destination="CwK-3E-MEi" collectionClass="NSMutableArray" id="62W-TV-SAv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="268" y="12"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="vEf-lc-iiP">
-            <objects>
-                <viewController id="lbo-0R-TzP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Z4N-hf-ZN5"/>
-                        <viewControllerLayoutGuide type="bottom" id="XRA-6g-L8J"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="t3h-kS-kwn">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hQI-7r-7EN">
-                                <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vDy-iz-QF6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="dGQ-0O-UCx" customClass="EnterNameView" customModule="Tic_Tac_Toe_With_Quiz" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="dGQ-0O-UCx" customClass="EnterView" customModule="Tic_Tac_Toe_With_Quiz" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="616" height="374"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -336,12 +329,12 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="267" y="-701"/>
+            <point key="canvasLocation" x="268" y="12"/>
         </scene>
-        <!--History-->
+        <!--Score-->
         <scene sceneID="oeb-zA-Bms">
             <objects>
-                <tableViewController id="vbR-oO-Zj5" sceneMemberID="viewController">
+                <tableViewController id="vbR-oO-Zj5" customClass="ScoreTableViewController" customModule="Tic_Tac_Toe_With_Quiz" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZXg-Cj-7eM">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -351,27 +344,71 @@
                             <outlet property="delegate" destination="vbR-oO-Zj5" id="eR2-0q-9Ca"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="History" id="gCo-nD-5xP"/>
+                    <navigationItem key="navigationItem" title="Score" id="gCo-nD-5xP">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="z8T-46-axN">
+                            <connections>
+                                <action selector="touchCloseBarButton:" destination="vbR-oO-Zj5" id="B9Y-Bx-Dhx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPu-Qg-NpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="720"/>
+            <point key="canvasLocation" x="1051" y="891"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="5WW-8J-N5O">
+        <scene sceneID="VkR-sK-lFn">
             <objects>
-                <navigationController id="swu-4h-22b" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n40-Eg-bje">
+                <navigationController id="FKi-dv-Wcb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jXh-SS-dwJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vbR-oO-Zj5" kind="relationship" relationship="rootViewController" id="8nN-Sw-S4i"/>
+                        <segue destination="vbR-oO-Zj5" kind="relationship" relationship="rootViewController" id="8lq-Mz-Dln"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sRW-fw-IfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WYI-hE-i1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="267" y="720"/>
+            <point key="canvasLocation" x="267" y="891"/>
+        </scene>
+        <!--Screenshot-->
+        <scene sceneID="maW-mC-tz9">
+            <objects>
+                <viewController title="Screenshot" id="UlL-8v-Au3" customClass="ScreenshotViewController" customModule="Tic_Tac_Toe_With_Quiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H2F-tt-8uI"/>
+                        <viewControllerLayoutGuide type="bottom" id="aQe-EK-E85"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zxy-ck-XJU">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6mH-Ef-Poc">
+                                <rect key="frame" x="20" y="83" width="696" height="311"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUo-oB-7WT">
+                                <rect key="frame" x="20" y="52" width="696" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="informationLabel" destination="kUo-oB-7WT" id="a1h-oP-9U1"/>
+                        <outlet property="screenshotImageView" destination="6mH-Ef-Poc" id="COy-IP-cXa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xOH-F6-SNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1819.5652173913045" y="889.85507246376824"/>
         </scene>
     </scenes>
     <resources>

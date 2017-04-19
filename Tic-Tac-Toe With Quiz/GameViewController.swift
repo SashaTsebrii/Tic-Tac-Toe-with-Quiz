@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GameViewController.swift
 //  Tic-Tac-Toe With Quiz
 //
 //  Created by Aleksandr Tsebrii on 11/6/16.
@@ -24,20 +24,38 @@ struct Cell {
     let occupied = 1
 }
 
-class ViewController: UIViewController, UITextFieldDelegate {
-    
-    // MARK: - Constant
-    
-    let purpleColor = UIColor(red: 0.471, green: 0.000, blue: 0.800, alpha: 1.00)
-    let pinkColor = UIColor(red:0.988, green:0.000, blue:1.000, alpha:1.00)
-    
-    let redColor = UIColor(red:1.00, green:0.16, blue:0.07, alpha:1.0)
-    let blueColor = UIColor(red:0.23, green:0.85, blue:1.00, alpha:1.0)
-    let greenColor = UIColor(red: 0.471, green: 0.000, blue: 0.800, alpha: 1.00) //UIColor(red:0.30, green:0.76, blue:0.00, alpha:1.0)
-    let yellowColor = UIColor(red:0.988, green:0.000, blue:1.000, alpha:1.00) //UIColor(red:1.00, green:0.98, blue:0.15, alpha:1.0)
-    let greyColor = UIColor(red:0.64, green:0.68, blue:0.76, alpha:1.0)
+struct popupView {
+    let popupViewEnter = 1
+    let popupViewAlert = 2
+    let popupViewQuestion = 3
+}
+
+class GameViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
+    
+    let helper = Helper()
+    
+    // Enter View Properties
+    @IBOutlet var enterView: EnterView!
+    @IBOutlet weak var enterViewTextLabel: UILabel!
+    @IBOutlet weak var enterViewOrLabel: UILabel!
+    @IBOutlet weak var enterViewFirstPlayerField: UITextField!
+    @IBOutlet weak var enterViewSecondPlayerField: UITextField!
+    @IBOutlet weak var enterViewCrossButton: UIButton!
+    @IBOutlet weak var enterViewNoughtButton: UIButton!
+    
+    // Question View Properties
+    @IBOutlet var questionView: QuestionView!
+    @IBOutlet weak var questionViewTextLabel: UILabel!
+    @IBOutlet weak var questionViewImageView: UIImageView!
+    @IBOutlet var questionViewAnswerButtons: [UIButton]!
+    
+    // Alert View Properties
+    @IBOutlet var alertView: AlertView!
+    @IBOutlet weak var alertViewTextLabel: UILabel!
+    @IBOutlet weak var alertVeiwCloseButton: UIButton!
+    
     
     let alertView = AlertView()
     let questionView = QuestionView()
@@ -93,15 +111,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func loadView() {
         super.loadView()
         
-        self.view.backgroundColor = yellowColor
+        self.view.backgroundColor = helper.yellowColor
         
+        // FIXME: - remove creating 'alertView' to storyboprd
         // create alert view
         let indentHorizontal = view.bounds.width * 0.05
         let indentVertical = view.bounds.height * 0.05
         let alertRect = CGRect(x: indentHorizontal, y: indentVertical,
                                width: view.bounds.width - indentHorizontal * 2, height: view.bounds.height - indentVertical * 2)
         alertView.frame = alertRect
-        alertView.backgroundColor = greenColor
+        alertView.backgroundColor = helper.greenColor
         alertView.layer.shadowColor = UIColor.black.cgColor
         alertView.layer.shadowOpacity = 1
         alertView.layer.shadowOffset = CGSize.zero
@@ -125,7 +144,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let crossRect = CGRect(x: alertView.bounds.midX - crossOrNoughtSizeFloat * 2, y: alertView.bounds.midY,
                                width: crossOrNoughtSizeFloat, height: crossOrNoughtSizeFloat)
         crossButton.frame = crossRect
-        crossButton.backgroundColor = redColor
+        crossButton.backgroundColor = helper.redColor
         crossButton.setImage(#imageLiteral(resourceName: "Cross"), for: .normal)
         crossButton.isEnabled = false
         crossButton.tag = choose.cross
@@ -135,7 +154,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let noughtRect = CGRect(x: alertView.bounds.midX + crossOrNoughtSizeFloat, y: alertView.bounds.midY,
                                width: crossOrNoughtSizeFloat, height: crossOrNoughtSizeFloat)
         noughtButton.frame = noughtRect
-        noughtButton.backgroundColor = blueColor
+        noughtButton.backgroundColor = helper.blueColor
         noughtButton.setImage(#imageLiteral(resourceName: "Nought"), for: .normal)
         noughtButton.isEnabled = false
         noughtButton.tag = choose.nought
@@ -186,13 +205,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         switch sender.tag {
         case choose.cross:
             activePlayer = player.cross
-            activeCrossView.backgroundColor = redColor
-            activeNoughtView.backgroundColor = greyColor
+            activeCrossView.backgroundColor = helper.redColor
+            activeNoughtView.backgroundColor = helper.greyColor
             
         case choose.nought:
             activePlayer = player.nought
-            activeNoughtView.backgroundColor = blueColor
-            activeCrossView.backgroundColor = greyColor
+            activeNoughtView.backgroundColor = helper.blueColor
+            activeCrossView.backgroundColor = helper.greyColor
             
         default:
             activePlayer = player.cross
@@ -248,7 +267,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                width: alertView.bounds.width * 0.05, height: alertView.bounds.height * 0.1)
         closeButton.frame = closeRect
         closeButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
-        closeButton.backgroundColor = yellowColor
+        closeButton.backgroundColor = helper.yellowColor
         closeButton.alpha = 0
         closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
         alertView.addSubview(closeButton)
@@ -301,15 +320,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     // design what drow in free cell
                     if activePlayer == player.cross {
                         sender.setImage(#imageLiteral(resourceName: "Cross"), for: .normal)
-                        sender.backgroundColor = redColor
-                        activeCrossView.backgroundColor = greyColor
-                        activeNoughtView.backgroundColor = blueColor
+                        sender.backgroundColor = helper.redColor
+                        activeCrossView.backgroundColor = helper.greyColor
+                        activeNoughtView.backgroundColor = helper.blueColor
                         activePlayer = player.nought
                     } else {
                         sender.setImage(#imageLiteral(resourceName: "Nought"), for: .normal)
-                        sender.backgroundColor = blueColor
-                        activeCrossView.backgroundColor = redColor
-                        activeNoughtView.backgroundColor = greyColor
+                        sender.backgroundColor = helper.blueColor
+                        activeCrossView.backgroundColor = helper.redColor
+                        activeNoughtView.backgroundColor = helper.greyColor
                         activePlayer = player.cross
                     }
                     
@@ -368,12 +387,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             hideQuestionView()
             if activePlayer == player.cross {
                 activePlayer = player.nought
-                activeCrossView.backgroundColor = greyColor
-                activeNoughtView.backgroundColor = blueColor
+                activeCrossView.backgroundColor = helper.greyColor
+                activeNoughtView.backgroundColor = helper.blueColor
             } else if activePlayer == player.nought {
                 activePlayer = player.cross
-                activeCrossView.backgroundColor = redColor
-                activeNoughtView.backgroundColor = greyColor
+                activeCrossView.backgroundColor = helper.redColor
+                activeNoughtView.backgroundColor = helper.greyColor
             }
         }
         
@@ -458,8 +477,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         gameIsActive = true
         activePlayer = player.cross
-        activeCrossView.backgroundColor = redColor
-        activeNoughtView.backgroundColor = greyColor
+        activeCrossView.backgroundColor = helper.redColor
+        activeNoughtView.backgroundColor = helper.greyColor
         gameState = [cell.free, cell.free, cell.free,
                      cell.free, cell.free, cell.free,
                      cell.free, cell.free, cell.free]
@@ -490,7 +509,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                width: alertView.bounds.width * 0.05, height: alertView.bounds.height * 0.1)
         closeButton.frame = closeRect
         closeButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
-        closeButton.backgroundColor = yellowColor
+        closeButton.backgroundColor = helper.yellowColor
         closeButton.alpha = 1
         closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
         alertView.addSubview(closeButton)
@@ -527,7 +546,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                width: alertView.bounds.width * 0.05, height: alertView.bounds.height * 0.1)
         closeButton.frame = closeRect
         closeButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
-        closeButton.backgroundColor = yellowColor
+        closeButton.backgroundColor = helper.yellowColor
         closeButton.alpha = 1
         closeButton.tag = 22
         closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
