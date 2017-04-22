@@ -10,12 +10,13 @@ import UIKit
 
 class QuestionView: UIView {
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    
+    
+    // MARK: - Properties
+    
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet var answerButtons: [UIButton]!
+    @IBOutlet weak var soundButton: UIButton!
     
 }

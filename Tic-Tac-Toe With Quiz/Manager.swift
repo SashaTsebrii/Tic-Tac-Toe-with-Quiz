@@ -12,7 +12,6 @@ class Manager: NSObject {
     
     static let SharedManager = Manager()
     
-    
     func getJSON(fileName: String) -> [Array<String>] {
         
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
@@ -23,7 +22,10 @@ class Manager: NSObject {
                     if let objects: [NSDictionary] = jsonResult["objects"] as? [NSDictionary] {
                         for object: NSDictionary in objects {
                             for (name,value) in object {
-                                print("\(name) , \(value)")
+                                #if NOT_TO_DO
+                                    print("\(name) , \(value)")
+                                #else
+                                #endif
                             }
                             if let rows: [NSArray] = object["rows"] as? [NSArray] {
                                 return rows as! [Array]
@@ -31,10 +33,18 @@ class Manager: NSObject {
                         }
                     }
                 } catch {
-                    print("No 'jsonData'")
+                    
+                    #if NOT_TO_DO
+                        print("No 'jsonData'")
+                    #else
+                    #endif
                 }
             } catch {
-                print("No 'path'")
+                
+                #if NOT_TO_DO
+                    print("No 'path'")
+                #else
+                #endif
             }
         }
         return []

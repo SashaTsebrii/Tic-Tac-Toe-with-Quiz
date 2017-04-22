@@ -9,13 +9,16 @@
 import UIKit
 
 class EnterView: UIView {
+    
+    
+    
+    // MARK: - Properties
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var orLabel: UILabel!
+    @IBOutlet weak var firstPlayerNameField: UITextField!
+    @IBOutlet weak var secondPlayerNameField: UITextField!
+    @IBOutlet weak var crossButton: UIButton!
+    @IBOutlet weak var noughtButton: UIButton!
 
 }

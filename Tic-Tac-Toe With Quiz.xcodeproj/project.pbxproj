@@ -23,7 +23,6 @@
 		EBDFB4291DEE667F009678C6 /* Correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBDFB4271DEE667F009678C6 /* Correct.wav */; };
 		EBDFB42A1DEE667F009678C6 /* Wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBDFB4281DEE667F009678C6 /* Wrong.wav */; };
 		EBE2B2AB1E9E82B100033A00 /* ScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2B2AA1E9E82B100033A00 /* ScoreTableViewController.swift */; };
-		EBE2B2AD1E9E830000033A00 /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2B2AC1E9E830000033A00 /* ScreenshotViewController.swift */; };
 		EBE2B2AF1E9E842900033A00 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2B2AE1E9E842900033A00 /* StartViewController.swift */; };
 		EBE2B2B11E9E928A00033A00 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2B2B01E9E928A00033A00 /* Helper.swift */; };
 /* End PBXBuildFile section */
@@ -47,7 +46,6 @@
 		EBDFB4271DEE667F009678C6 /* Correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Correct.wav; sourceTree = "<group>"; };
 		EBDFB4281DEE667F009678C6 /* Wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Wrong.wav; sourceTree = "<group>"; };
 		EBE2B2AA1E9E82B100033A00 /* ScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewController.swift; sourceTree = "<group>"; };
-		EBE2B2AC1E9E830000033A00 /* ScreenshotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
 		EBE2B2AE1E9E842900033A00 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EBE2B2B01E9E928A00033A00 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,7 +131,6 @@
 				EBE2B2AE1E9E842900033A00 /* StartViewController.swift */,
 				EB72D7711DCFC70900067211 /* GameViewController.swift */,
 				EBE2B2AA1E9E82B100033A00 /* ScoreTableViewController.swift */,
-				EBE2B2AC1E9E830000033A00 /* ScreenshotViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -173,7 +170,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Aleksandr Tsebrii";
 				TargetAttributes = {
 					EB72D76B1DCFC70900067211 = {
@@ -226,7 +223,6 @@
 				EB62AE001E93F0A800ADB6C5 /* EnterView.swift in Sources */,
 				EB72D7781DCFC70900067211 /* Tic_Tac_Toe_With_Quiz.xcdatamodeld in Sources */,
 				EB72D7721DCFC70900067211 /* GameViewController.swift in Sources */,
-				EBE2B2AD1E9E830000033A00 /* ScreenshotViewController.swift in Sources */,
 				EBE2B2AF1E9E842900033A00 /* StartViewController.swift in Sources */,
 				EB02D11A1DDA7BD1002B3B70 /* AlertView.swift in Sources */,
 				EBA2FB751DD4ED7E00CEE500 /* Quiz.swift in Sources */,
@@ -278,6 +274,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -328,6 +325,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
