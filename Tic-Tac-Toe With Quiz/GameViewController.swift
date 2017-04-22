@@ -97,11 +97,14 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = helper.yellowColor
         
         // set 'enterView'
         enterView.frame.origin = CGPoint(x: (self.view.bounds.width - enterView.frame.width) / 2,
                                          y: (self.view.bounds.height - enterView.frame.height) / 2)
+        enterView.layer.shadowColor = UIColor.black.cgColor
+        enterView.layer.shadowOpacity = 1
+        enterView.layer.shadowOffset = CGSize.zero
+        enterView.layer.shadowRadius = min(view.bounds.width, view.bounds.height) * 0.05
         enterView.isHidden = true
         enterView.crossButton.isEnabled = false
         enterView.crossButton.tag = choose.cross
@@ -118,6 +121,10 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         // set 'questionView'
         questionView.frame.origin = CGPoint(x: (self.view.bounds.width - questionView.frame.width) / 2,
                                             y: (self.view.bounds.height - questionView.frame.height) / 2)
+        questionView.layer.shadowColor = UIColor.black.cgColor
+        questionView.layer.shadowOpacity = 1
+        questionView.layer.shadowOffset = CGSize.zero
+        questionView.layer.shadowRadius = min(view.bounds.width, view.bounds.height) * 0.05
         questionView.isHidden = true
         questionView.soundButton.addTarget(self, action: #selector(actionSpeachText(_:)), for: .touchUpInside)
         self.view.addSubview(self.questionView)
@@ -125,6 +132,10 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         // set 'alelrtView'
         alertView.frame.origin = CGPoint(x: (self.view.bounds.width - alertView.frame.width) / 2,
                                          y: (self.view.bounds.height - alertView.frame.height) / 2)
+        alertView.layer.shadowColor = UIColor.black.cgColor
+        alertView.layer.shadowOpacity = 1
+        alertView.layer.shadowOffset = CGSize.zero
+        alertView.layer.shadowRadius = min(view.bounds.width, view.bounds.height) * 0.05
         alertView.isHidden = true
         alertView.closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
         self.view.addSubview(self.alertView)
@@ -588,9 +599,9 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     }
     
     func readText(text: String) {
-        let voice = AVSpeechSynthesisVoice(language: "en-au")
+        let voice = AVSpeechSynthesisVoice(language: "en-US")
         let toSay = AVSpeechUtterance(string : text)
-        toSay.rate = 0.4
+        toSay.rate = 0.35
         toSay.voice = voice
         let spk = AVSpeechSynthesizer( )
         spk.speak(toSay)

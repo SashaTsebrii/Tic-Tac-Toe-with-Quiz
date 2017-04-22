@@ -51,7 +51,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="vcU-H7-ja1"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -149,7 +149,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.47058823529411764" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.6470588235294118" green="0.37647058823529411" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akx-74-5KM">
                                 <rect key="frame" x="656" y="109" width="60" height="60"/>
@@ -160,7 +160,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.23137254901960785" green="0.85098039215686272" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.76862745098039209" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qa6-gq-wgV">
                                 <rect key="frame" x="656" y="198" width="60" height="60"/>
@@ -194,7 +194,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.15686274510000001" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.043137254899999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsb-28-E2l">
                                 <rect key="frame" x="656" y="20" width="60" height="21"/>
@@ -212,7 +212,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.9882352941176471" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
@@ -254,7 +254,7 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGA-9b-lXb">
                             <rect key="frame" x="73" y="210" width="144" height="144"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <color key="backgroundColor" red="1" green="0.15686274510000001" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="1" green="0.043137254901960784" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="Cross">
                                 <attributedString key="attributedTitle"/>
                             </state>
@@ -262,7 +262,7 @@
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="obK-sv-JIU">
                             <rect key="frame" x="399" y="210" width="144" height="144"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.0" green="0.68235294117647061" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="Nought">
                                 <attributedString key="attributedTitle"/>
                             </state>
@@ -275,7 +275,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.5568627451" green="0.26274509800000001" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="SecondPlayerNameField" destination="QEf-6q-iov" id="qew-I9-GIN"/>
                         <outlet property="crossButton" destination="hGA-9b-lXb" id="rhk-dg-eFx"/>
@@ -309,7 +309,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.64705882349999999" green="0.37647058820000001" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="closeButton" destination="HYT-JB-2pn" id="gaU-L1-hUx"/>
                         <outlet property="textLabel" destination="ryW-rR-exJ" id="tiQ-oj-hmN"/>
@@ -361,7 +361,7 @@
                             <state key="normal" image="Sound"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.64705882349999999" green="0.37647058820000001" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="imageView" destination="7v1-xO-5hF" id="1xI-oy-Bat"/>
                         <outlet property="soundButton" destination="7fm-Kc-iZs" id="eG5-7N-CZL"/>

@@ -42,7 +42,7 @@ class StartViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.view.backgroundColor = helper.yellowColor
+//        self.view.backgroundColor = helper.yellowColor
     }
     
     override func viewDidLoad() {
