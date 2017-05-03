@@ -10,8 +10,6 @@ import UIKit
 
 class AlertView: UIView {
     
-    
-    
     // MARK: - Properties
     
     @IBOutlet weak var textView: UITextView!

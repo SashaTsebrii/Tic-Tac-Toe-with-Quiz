@@ -10,8 +10,6 @@ import UIKit
 
 class EnterView: UIView {
     
-    
-    
     // MARK: - Properties
 
     @IBOutlet weak var textLabel: UILabel!
