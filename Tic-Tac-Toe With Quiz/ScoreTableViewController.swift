@@ -10,8 +10,6 @@ import UIKit
 
 class ScoreTableViewController: UITableViewController {
     
-    
-    
     // MARK: - Setting
     
     override var prefersStatusBarHidden: Bool {
@@ -30,11 +28,9 @@ class ScoreTableViewController: UITableViewController {
         return .landscapeLeft
     }
     
-    
-    
     // MARK: - Properties
-    var scoreArray = [String]()
     
+    var scoreArray = [String]()
     
     // MARK: - Lifecycle
     
@@ -47,8 +43,6 @@ class ScoreTableViewController: UITableViewController {
         let defaults = UserDefaults.standard
         scoreArray = defaults.stringArray(forKey: Constants.scoreArray) ?? [String]()
     }
-    
-    
     
     // MARK: - UITableViewDataSource
 
@@ -67,8 +61,6 @@ class ScoreTableViewController: UITableViewController {
         return cell
     }
     
-    
-    
     // UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,8 +70,6 @@ class ScoreTableViewController: UITableViewController {
         #else
         #endif
     }
-    
-    
     
     // MARK: - Action
     

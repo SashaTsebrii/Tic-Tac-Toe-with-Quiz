@@ -7,7 +7,6 @@
 //
 
 // FIXME: Use animagion from project "SpringAndBlurDemo" for show and hight popupViews!
-// FIXME: Save array for score.
 
 import UIKit
 import AVFoundation
@@ -34,8 +33,6 @@ struct TextFieldTag {
 
 class GameViewController: UIViewController, UITextFieldDelegate {
     
-    
-    
     // MARK: - Setting
     
     override var prefersStatusBarHidden: Bool {
@@ -53,8 +50,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscapeLeft
     }
-    
-    
     
     // MARK: - Properties
     
@@ -86,13 +81,10 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstPlayerLabel: UILabel!
     @IBOutlet weak var secondPlayerLabel: UILabel!
     
-    
-    
     // MARK: - Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        enterView.firstPlayerNameField.becomeFirstResponder()
     }
     
     override func loadView() {
@@ -147,12 +139,11 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         startNewGame()
     }
     
-    
-    
     // MARK: - Views' methods
     
     func enterViewShow() {
         enterView.isHidden = false
+        enterView.firstPlayerNameField.becomeFirstResponder()
         UIView.animate(withDuration: 1, animations: {
             self.alertView.alpha = 1
         }, completion: nil)
@@ -234,8 +225,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    
-    
     // MARK: - Game methods
     
     func startNewGame() {
@@ -258,8 +247,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
             button.backgroundColor = UIColor.white
         }
     }
-    
-    
     
     // MARK: - Action
     
@@ -430,8 +417,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-    
     // Save/load methods
     
     func saveString(string: String) {
@@ -440,8 +425,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         scoreArray.append(string)
         defaults.set(scoreArray, forKey: Constants.scoreArray)
     }
-    
-    
     
     // MARK: - Touches
     
@@ -453,8 +436,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
             enterView.secondPlayerNameField.resignFirstResponder()
         }
     }
-    
-    
     
     // MARK: - Help
     
@@ -550,8 +531,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         #endif
     }
     
-    
-    
     // MARK: - Sound
     
     func playCorrectSound() {
@@ -606,8 +585,6 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         let spk = AVSpeechSynthesizer( )
         spk.speak(toSay)
     }
-    
-    
     
     //MARK: - UITextFieldDelegate
     

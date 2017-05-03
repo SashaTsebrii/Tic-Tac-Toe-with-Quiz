@@ -10,8 +10,6 @@ import UIKit
 
 class StartViewController: UIViewController {
     
-    
-    
     // MARK: - Setting
     
     override var prefersStatusBarHidden: Bool {
@@ -28,25 +26,6 @@ class StartViewController: UIViewController {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscapeLeft
-    }
-    
-    
-    
-    // MARK: - Variable
-    
-    let helper = Helper()
-    
-    
-    
-    // MARK: - Lifecycle
-    
-    override func loadView() {
-        super.loadView()
-//        self.view.backgroundColor = helper.yellowColor
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
 }

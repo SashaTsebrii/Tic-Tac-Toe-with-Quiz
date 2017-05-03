@@ -8,7 +8,9 @@
 
 import UIKit
 
-//\u{2B50}\u{1F947}\u{1F948}
+// \u{2B50} = ⭐️
+// \u{1F947} = 🥇
+// \u{1F948} = 🥈
 
 let NOT_TO_DO = true
 /*
@@ -25,9 +27,9 @@ struct Constants {
 }
 
 class Helper: NSObject {
-    let redColor = UIColor(red:1.000, green:0.043, blue:0.000, alpha:1.0)
-    let blueColor = UIColor(red:0.000, green:0.769, blue:1.000, alpha:1.0)
-    let greenColor = UIColor(red:0.498, green:0.733, blue:0.000, alpha:1.0)
-    let yellowColor = UIColor(red:1.000, green:0.725, blue:0.000, alpha:1.0)
-    let greyColor = UIColor(red:0.639, green:0.639, blue:0.639, alpha:1.0)
+    let redColor = UIColor(red:1.000, green:0.043, blue:0.000, alpha:1.0) // ff0b00
+    let blueColor = UIColor(red:0.000, green:0.769, blue:1.000, alpha:1.0) // 00c4ff
+    let pinkColor = UIColor(red: 0.988, green: 0.000, blue: 1.000, alpha: 1.0) // fc00ff
+    let perpleColor = UIColor(red: 0.557, green: 0.263, blue: 0.906, alpha: 1.0) // 8e43e7
+    let greyColor = UIColor(red:0.592, green:0.592, blue:0.592, alpha:1.0) // 979797
 }

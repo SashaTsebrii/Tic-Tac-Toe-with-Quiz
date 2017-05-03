@@ -10,8 +10,6 @@ import UIKit
 
 class QuestionView: UIView {
     
-    
-    
     // MARK: - Properties
     
     @IBOutlet weak var textLabel: UILabel!
