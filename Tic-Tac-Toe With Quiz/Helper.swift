@@ -35,4 +35,3 @@ class Helper: NSObject {
 }
 
 // FIXME: Use animagion from project "SpringAndBlurDemo" for show and hight popupViews!
-// FIXME: Don't allow other touch when show alertView, enterView and questionView!
