@@ -364,7 +364,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
                                 self.isWin = true
                                 self.alertViewShow(withText: "\(self.firstPlayerLabel.text!) has won!", isFAQ: false)
                             }
-                            let saveString = "\u{1F947} \(firstPlayerName)     vs.     \(secondPlayerName)   "
+                            let saveString = "\u{1F947} \(firstPlayerName) vs. \(secondPlayerName)"
                             self.saveString(string: saveString)
                             gameIsActive = false
                         } else {
@@ -373,7 +373,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
                                 self.isWin = true
                                 self.alertViewShow(withText: "\(self.secondPlayerLabel.text!) has won!", isFAQ: false)
                             }
-                            let saveString = "   \(firstPlayerName)     vs.     \(secondPlayerName) \u{1F947}"
+                            let saveString = "\(firstPlayerName) vs. \(secondPlayerName) \u{1F947}"
                             self.saveString(string: saveString)
                             gameIsActive = false
                         }
@@ -395,7 +395,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             self.alertViewShow(withText: "Nobody has won!", isFAQ: false)
                         }
-                        let saveString = "   \(firstPlayerName)     vs.     \(secondPlayerName)   "
+                        let saveString = "\(firstPlayerName) vs. \(secondPlayerName)"
                         self.saveString(string: saveString)
                         gameIsActive = false
                     }
