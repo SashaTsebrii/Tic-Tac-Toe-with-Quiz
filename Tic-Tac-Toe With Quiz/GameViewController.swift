@@ -6,8 +6,6 @@
 //  Copyright © 2016 Aleksandr Tsebrii. All rights reserved.
 //
 
-// FIXME: Use animagion from project "SpringAndBlurDemo" for show and hight popupViews!
-
 import UIKit
 import AVFoundation
 
@@ -73,6 +71,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     var secondPlayerName = ""
     var isWin = false
     
+    @IBOutlet var blockView: UIView!
     @IBOutlet var enterView: EnterView!
     @IBOutlet var questionView: QuestionView!
     @IBOutlet var alertView: AlertView!
@@ -89,6 +88,14 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     
     override func loadView() {
         super.loadView()
+        
+        // set 'blockView'
+        blockView = UIView()
+        blockView.frame.origin = CGPoint.zero
+        blockView.frame = self.view.bounds
+        blockView.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+        blockView.isHidden = true
+        self.view.addSubview(blockView)
         
         // set 'enterView'
         enterView.frame.origin = CGPoint(x: (self.view.bounds.width - enterView.frame.width) / 2,
@@ -108,7 +115,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         enterView.firstPlayerNameField.tag = textFieldTag.cross
         enterView.secondPlayerNameField.delegate = self
         enterView.secondPlayerNameField.tag = textFieldTag.nought
-        self.view.addSubview(self.enterView)
+        self.view.addSubview(enterView)
         
         // set 'questionView'
         questionView.frame.origin = CGPoint(x: (self.view.bounds.width - questionView.frame.width) / 2,
@@ -119,7 +126,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         questionView.layer.shadowRadius = min(view.bounds.width, view.bounds.height) * 0.05
         questionView.isHidden = true
         questionView.soundButton.addTarget(self, action: #selector(actionSpeachText(_:)), for: .touchUpInside)
-        self.view.addSubview(self.questionView)
+        self.view.addSubview(questionView)
         
         // set 'alelrtView'
         alertView.frame.origin = CGPoint(x: (self.view.bounds.width - alertView.frame.width) / 2,
@@ -130,7 +137,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         alertView.layer.shadowRadius = min(view.bounds.width, view.bounds.height) * 0.05
         alertView.isHidden = true
         alertView.closeButton.addTarget(self, action: #selector(actionCloseButton(_:)), for: .touchUpInside)
-        self.view.addSubview(self.alertView)
+        self.view.addSubview(alertView)
     }
     
     override func viewDidLoad() {
@@ -142,6 +149,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Views' methods
     
     func enterViewShow() {
+        blockView.isHidden = false
         enterView.isHidden = false
         enterView.firstPlayerNameField.becomeFirstResponder()
         UIView.animate(withDuration: 1, animations: {
@@ -155,9 +163,11 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         }, completion: { (finished: Bool) in
             self.enterView.isHidden = true
         })
+        blockView.isHidden = true
     }
     
     func questionViewShow(question: Quiz) {
+        blockView.isHidden = false
         #if NOT_TO_DO
             print("REAL question \(question.question)")
         #else
@@ -187,9 +197,11 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         }, completion: { (finished: Bool) in
             self.questionView.isHidden = true
         })
+        blockView.isHidden = true
     }
     
     func alertViewShow(withText: String, isFAQ: Bool) {
+        blockView.isHidden = false
         if isFAQ {
             alertView.textView.isHidden = false
             alertView.textLabel.isHidden = true
@@ -223,6 +235,7 @@ class GameViewController: UIViewController, UITextFieldDelegate {
         }, completion: { (finished: Bool) in
             self.alertView.isHidden = true
         })
+        blockView.isHidden = true
     }
     
     // MARK: - Game methods

@@ -33,3 +33,6 @@ class Helper: NSObject {
     let perpleColor = UIColor(red: 0.557, green: 0.263, blue: 0.906, alpha: 1.0) // 8e43e7
     let greyColor = UIColor(red:0.592, green:0.592, blue:0.592, alpha:1.0) // 979797
 }
+
+// FIXME: Use animagion from project "SpringAndBlurDemo" for show and hight popupViews!
+// FIXME: Don't allow other touch when show alertView, enterView and questionView!
